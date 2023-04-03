@@ -16,6 +16,28 @@
 
 #include <iostream>
 
-int main(void) {
-	std::cout << "test!" << std::endl;
+#include "../include/util/strtool.h"
+#include "../include/iobuf/files/ext/fext.h"
+
+int main() {
+	// string testing
+	std::string test = "scott>=tiger>=mushroom";
+	std::string test_delim = ">=";
+
+	skelly_str_splits test_data = SKELLY_STRING_SPLIT(test, test_delim);
+
+	for (int i = 0; i < test_data.contents.size(); i++) {
+		std::cout << test_data.contents[i] << std::endl;
+	}
+
+	std::string fn = "test.skl";
+	std::string fnh = "test.sklm";
+
+	if (SKELLY_IS_VALID_FEXT(fn)) {
+		std::cout << "valid skelly file\n";
+	}
+
+	if (SKELLY_IS_VALID_FEXT(fnh)) {
+		std::cout << "valid skelly module file\n";
+	}
 }
