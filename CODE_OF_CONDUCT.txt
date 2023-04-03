@@ -1,0 +1,53 @@
+---- HOW TO SEND PULL REQUESTS ----
+
+First (if macOS or Linux) have gh or hub installed (recommended to use gh instead)
+
+command: brew install gh
+command: brew install hub
+
+only install ONE of those (recommended to use gh instead)
+
+For windows, use gh, please go to their website and install gh in the terminal
+
+link: https://cli.github.com
+
+---- BEFORE COMMITTING ----
+
+1.  Please create a temporary branch and commit your changes to that branch.
+    Your branch name should be named something suitable and related to your PR
+    E.g. a PR for updating a file should have a branch named <git branch -M UPDATE_FILES>
+
+    command: git branch -M <temp branch name>
+
+2.  Send push your temporary branch to the repository
+    You should already know how to push to the repository from the terminal.
+    In case, your lazy ass uses the desktop app, here is how to do that:
+
+    (assuming you have the git repository initialised)
+    (assuming you are on the temporary branch which you made for this commit)
+    
+    command: git branch -M <temp branch name>
+    command: git add .
+    command: git commit -am "YOUR COMMIT MESSAGE HERE"
+    command: git push -u origin <temp branch name here>
+
+3.  Create a new pull request with the gh terminal command
+    Follow the steps and give a suitable title for your PR.
+    On the final step, select continue in browser and submit the PR once 
+    it takes you to the webpage.
+
+    PRs should be sent to the dev branch ONLY
+
+    command: gh pr create -B dev
+
+    *** WHEN IT ASKS IF TO PUSH TO REPOSITORY SELECT 'SKIP THIS STEP' ***
+
+    *** WHEN IT ASKS FOR A TITLE PLEASE GIVE A SUITABLE TITLE NAME AND PROCEED ***
+
+    *** WHEN IT GIVES YOU THE FINAL OPTION PLEASE CONTINUE IN BROWSER AND CREATE PR THERE ***
+
+4.  Once redirect to the browser, create your PR from step 3. Once you have done this,
+    wait for the owner to approve of it and merge it to the dev branch. Your temporary branch
+    will be deleted once the merge is completed.
+
+---- END OF TUTORIAL ----
