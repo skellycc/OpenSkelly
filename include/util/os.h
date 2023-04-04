@@ -14,18 +14,26 @@
  * Developed for the SCMLVM system. (Skelly Compiler Middle Level Virtual Machine)
  */
 
-#ifndef INCLUDE_IOBUF_FILES_OUTSTREAM_H_
-#define INCLUDE_IOBUF_FILES_OUTSTREAM_H_
+#ifndef INCLUDE_UTIL_OS_H_
+#define INCLUDE_UTIL_OS_H_
 
-#include "sbuffer.h"
+#include "strtool.h"
 
-namespace skelly {
-namespace stream {
-	class skelly_output_buffer : public skelly_buffer_model {
-
-	};
+inline std::string __skelly_get_os() {
+#if __APPLE__
+	return "unix";
+#elif defined(__linux) || defined(__linux__)
+	return "unix";
+#elif defined(_WIN32) || defined(_WIN64)
+	return "nt";
+#elif defined(__ANDROID__)
+	return "unix";
+#else
+	return "other";
+#endif
 }
-}
+
+#define SKELLY_OS_TYPE() __skelly_get_os()
 
 
-#endif /* INCLUDE_IOBUF_FILES_OUTSTREAM_H_ */
+#endif /* INCLUDE_UTIL_OS_H_ */

@@ -14,18 +14,11 @@
  * Developed for the SCMLVM system. (Skelly Compiler Middle Level Virtual Machine)
  */
 
-#ifndef INCLUDE_IOBUF_FILES_OUTSTREAM_H_
-#define INCLUDE_IOBUF_FILES_OUTSTREAM_H_
-
-#include "sbuffer.h"
-
-namespace skelly {
-namespace stream {
-	class skelly_output_buffer : public skelly_buffer_model {
-
-	};
-}
-}
+#ifndef INCLUDE_SECURITY_COMPILER_POLICY_H_
+#define INCLUDE_SECURITY_COMPILER_POLICY_H_
 
 
-#endif /* INCLUDE_IOBUF_FILES_OUTSTREAM_H_ */
+
+
+
+#endif /* INCLUDE_SECURITY_COMPILER_POLICY_H_ */

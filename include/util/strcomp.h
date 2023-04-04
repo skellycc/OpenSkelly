@@ -25,6 +25,11 @@ struct skelly_str_container {
 	std::vector<std::string> contents;
 };
 
+struct skelly_str_buffer {
+	bool heap;
+	skelly_str_container chunks;
+};
+
 typedef skelly_str_container skelly_str_splits;
 
 #endif /* INCLUDE_UTIL_STRCOMP_H_ */
