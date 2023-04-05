@@ -14,19 +14,16 @@
  * Developed for the SCMLVM system. (Skelly Compiler Middle Level Virtual Machine)
  */
 
-#ifndef INCLUDE_SECURITY_OS_RUNTIME_POLICY_H_
-#define INCLUDE_SECURITY_OS_RUNTIME_POLICY_H_
+#ifndef COMPILER_TOOLS_H_
+#define COMPILER_TOOLS_H_
+
+#include <stdlib.h>
+
+#define SKELLY_NTHROW noexcept
+#define SKELLY_MALLOC(__bytes) malloc(__bytes)
+#define SKELLY_FREE(__blck) free(_blck)
+
+#define SKELLY_NO_OVERRIDE() final
 
 
-// Intercepting byte-code chunks and mapping correct
-// Permissions to requests by checking OS permissions
-
-namespace skelly {
-namespace security {
-	class runtime_security {
-
-	};
-}
-}
-
-#endif /* INCLUDE_SECURITY_OS_RUNTIME_POLICY_H_ */
+#endif /* COMPILER_TOOLS_H_ */

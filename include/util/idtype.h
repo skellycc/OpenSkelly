@@ -14,19 +14,9 @@
  * Developed for the SCMLVM system. (Skelly Compiler Middle Level Virtual Machine)
  */
 
-#ifndef INCLUDE_SECURITY_OS_RUNTIME_POLICY_H_
-#define INCLUDE_SECURITY_OS_RUNTIME_POLICY_H_
+#ifndef INCLUDE_UTIL_IDTYPE_H_
+#define INCLUDE_UTIL_IDTYPE_H_
 
+#define SKELLY_GET_ENUM_VALUE(__enum, __x) static_cast<std::underlying_type<__enum>::type>(__x)
 
-// Intercepting byte-code chunks and mapping correct
-// Permissions to requests by checking OS permissions
-
-namespace skelly {
-namespace security {
-	class runtime_security {
-
-	};
-}
-}
-
-#endif /* INCLUDE_SECURITY_OS_RUNTIME_POLICY_H_ */
+#endif /* INCLUDE_UTIL_IDTYPE_H_ */

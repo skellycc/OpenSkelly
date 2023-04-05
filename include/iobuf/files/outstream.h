@@ -21,9 +21,11 @@
 
 namespace skelly {
 namespace stream {
-	class skelly_output_buffer : public skelly_buffer_model {
 
-	};
+class skelly_output_buffer : public skelly_buffer_model {
+
+};
+
 }
 }
 
