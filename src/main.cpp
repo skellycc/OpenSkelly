@@ -18,6 +18,7 @@
 
 #include "../include/util/strtool.h"
 #include "../include/iobuf/files/ext/fext.h"
+#include "../tests/compiler/skellyc_annons_test.h"
 
 int main() {
 	// string testing
@@ -40,4 +41,10 @@ int main() {
 	if (SKELLY_IS_VALID_FEXT(fnh)) {
 		std::cout << "valid skelly module file\n";
 	}
+
+	std::cout << "Compiler Tests:\n";
+
+	skellyc_annons_test skellycat;
+
+	skellycat.remove_spaces();
 }

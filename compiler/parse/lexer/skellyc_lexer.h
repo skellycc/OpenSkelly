@@ -17,8 +17,13 @@
 #ifndef COMPILER_PARSE_LEXER_SKELLYC_LEXER_H_
 #define COMPILER_PARSE_LEXER_SKELLYC_LEXER_H_
 
-#include "../../skellyc_token.h"
-#include "../../../tools.h"
+#include "../skellyc_token.h"
+#include "../../tools.h"
+#include "../../../include/util/strtool.h"
+
+#include <algorithm>
+#include <string>
+#include <ctype.h>
 #include <stddef.h>
 
 namespace skelly {
@@ -26,13 +31,26 @@ namespace compiler {
 namespace lexer {
 
 class skellyc_annons SKELLY_NO_OVERRIDE() {
-public:
-	static const char* __skelly_source = "sample.skl";
 private:
 	explicit skellyc_annons() = delete;
 	~skellyc_annons() = delete;
 public:
-	static void truncate_spaces(const char* _src = __skelly_source);
+	static std::string truncate_spaces(std::string _src) {
+		_src.erase(std::remove(_src.begin(), _src.end(), '\t'), _src.end());
+		_src.erase(std::remove(_src.begin(), _src.end(), ' '), _src.end());
+		return _src;
+	}
+	static char* truncate_lines(const char* _src) {
+		return 0;
+		//return __itruncp(_src, &_ch, (*_src == *_ch));
+	}
+	static char* truncate_cmts(const char* _src) {
+		return 0;
+		//return __itruncp(_src, &_ch, (*_src == *_ch));
+	}
+	static char* truncate_char(const char* _src) {
+		return 0;
+	}
 };
 
 class skellyc_lexer SKELLY_NO_OVERRIDE() {
@@ -65,9 +83,14 @@ public:
 	~skellyc_lexer() = default;
 
 	// Please do not use copy constructors or move semantics on the LEXER!
-	skellyc_lexer(skellyc_lexer) = delete;
+	skellyc_lexer(skellyc_lexer&) = delete;
 public:
 	// LEXER functions
+	skelly_token next_token();
+
+	void drop_line();
+
+	void trim_to_left();
 };
 
 }

@@ -65,10 +65,19 @@ inline std::string str_fext_name(std::string* fname, std::string* strexpt) {
 	return "";
 }
 
+inline bool is_str_empty(const char* src) {
+	return src != NULL && src[0] == '\0';
+}
+
+inline bool is_str_empty(const std::string& str) {
+	return str.empty();
+}
+
 // Split string tokens
 #define SKELLY_STRING_SPLIT(_strin, _strtok) str_tok_split(&_strin, &_strtok)
 #define SKELLY_STRING_MATCH(_strin, _strtarg) str_tok_match(&_strin, &_strtarg)
 #define SKELLY_STRING_HAS(_strin, _strhas) str_tok_has(&_strin, &_strhas)
 #define SKELLY_STRING_FEXT(_strin, _strexpt) str_fext_name(&_strin, &_strexpt);
+#define SKELLY_STRING_EMPTY(_strin) is_str_empty(_strin)
 
 #endif /* INCLUDE_UTIL_STRTOOL_H_ */
