@@ -18,6 +18,7 @@
 #define INCLUDE_UTIL_STRTOOL_H_
 
 #include <tuple>
+#include <algorithm>
 #include "strcomp.h"
 
 // Flush existing contents
@@ -73,11 +74,28 @@ inline bool is_str_empty(const std::string& str) {
 	return str.empty();
 }
 
+inline std::string strtrunc(std::string strin, char strtrunc) {
+	strin.erase(std::remove(strin.begin(), strin.end(), strtrunc), strin.end());
+	return strin;
+}
+
+inline std::string str_replace(std::string strin, std::string strrep, std::string strto) {
+	return 0;
+}
+
+inline bool str_in_array(std::vector<std::string> arr, std::string strin) {
+	return (!arr.empty()) && std::find(arr.begin(), arr.end(), strin) != arr.end();
+}
+
 // Split string tokens
 #define SKELLY_STRING_SPLIT(_strin, _strtok) str_tok_split(&_strin, &_strtok)
 #define SKELLY_STRING_MATCH(_strin, _strtarg) str_tok_match(&_strin, &_strtarg)
 #define SKELLY_STRING_HAS(_strin, _strhas) str_tok_has(&_strin, &_strhas)
-#define SKELLY_STRING_FEXT(_strin, _strexpt) str_fext_name(&_strin, &_strexpt);
+#define SKELLY_STRING_FEXT(_strin, _strexpt) str_fext_name(&_strin, &_strexpt)
 #define SKELLY_STRING_EMPTY(_strin) is_str_empty(_strin)
+#define SKELLY_STRING_TRUNCATE(_strin, _strtrunc) strtrunc(_strin, _strtrunc)
+#define SKELLY_STRING_REPLACE(_strin, _strrep, _strto) str_replace(_strin, _strrep, _strto)
+
+#define SKELLY_STRING_ARRAY_IN(_srcarr, _strin) str_in_array(_srcarr, _strin)
 
 #endif /* INCLUDE_UTIL_STRTOOL_H_ */

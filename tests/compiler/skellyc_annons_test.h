@@ -33,7 +33,13 @@ struct skellyc_annons_test {
 
 	void remove_spaces() {
 		std::string result = skelly::compiler::lexer::skellyc_annons::truncate_spaces(__src_code);
-		std::cout << result << std::endl;
+		std::string result2 = skelly::compiler::lexer::skellyc_annons::truncate_sngl_cmts(result);
+
+		std::cout << result2 << std::endl;
+		std::cout << "keyword detection:\n";
+
+		std::string keywords = skelly::compiler::lexer::skellyc_annons::add_keyword_space(__src_code);
+		std::cout << keywords << std::endl;
 	}
 };
 

@@ -47,4 +47,5 @@ int main() {
 	skellyc_annons_test skellycat;
 
 	skellycat.remove_spaces();
+
 }

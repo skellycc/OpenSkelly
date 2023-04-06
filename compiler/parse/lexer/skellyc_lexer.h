@@ -18,6 +18,7 @@
 #define COMPILER_PARSE_LEXER_SKELLYC_LEXER_H_
 
 #include "../skellyc_token.h"
+#include "../../type/skellyc_kwlist.h"
 #include "../../tools.h"
 #include "../../../include/util/strtool.h"
 
@@ -36,20 +37,57 @@ private:
 	~skellyc_annons() = delete;
 public:
 	static std::string truncate_spaces(std::string _src) {
-		_src.erase(std::remove(_src.begin(), _src.end(), '\t'), _src.end());
-		_src.erase(std::remove(_src.begin(), _src.end(), ' '), _src.end());
-		return _src;
+		return SKELLY_STRING_TRUNCATE(_src, '\t');
 	}
-	static char* truncate_lines(const char* _src) {
-		return 0;
-		//return __itruncp(_src, &_ch, (*_src == *_ch));
+	static std::string truncate_lines(const char* _src) {
+		return SKELLY_STRING_TRUNCATE(_src, '\n');
 	}
-	static char* truncate_cmts(const char* _src) {
-		return 0;
-		//return __itruncp(_src, &_ch, (*_src == *_ch));
+	static std::string truncate_sngl_cmts(std::string _src) {
+		std::string __res;
+		std::string __tmpstd = _src;
+		bool comment = false;
+		int i = 0;
+		while (i < __tmpstd.length()) {
+			if (comment || __tmpstd.substr(i, 2) == "//") {
+				comment = true;
+			}
+			if (comment) {
+				size_t nline_pos = __tmpstd.find("\n", i);
+				if (nline_pos != std::string::npos) {
+					comment = false;
+					i = nline_pos;
+				} else {
+					i = __tmpstd.length();
+				}
+			} else {
+				__res += __tmpstd[i];
+				i++;
+			}
+		}
+		return __res;
 	}
-	static char* truncate_char(const char* _src) {
-		return 0;
+	static std::string add_keyword_space(std::string _src) {
+		std::string __word;
+		std::string __res;
+		std::string __tmpc;
+		bool word = false;
+		for (char& __symbol : _src) {
+			if (isalpha(__symbol)) {
+				if (!word) {
+					word = true;
+					__word = "";
+				}
+				__word += __symbol;
+			} else {
+				if (word) {
+					if (SKELLY_KEYWORDS.count(__tmpc) > 0) {
+						__res += __word;
+					}
+					word = false;
+				}
+			}
+		}
+		return __word;
 	}
 };
 
