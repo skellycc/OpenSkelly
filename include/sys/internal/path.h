@@ -19,26 +19,17 @@
 *                                                                               *
 *******************************************************************************/
 
-#ifndef __INCLUDE_CLI_OUTPUT_H__
-#define __INCLUDE_CLI_OUTPUT_H__
+#ifndef __INCLUDE_SYS_INTERNAL_PATH_H__
+#define __INCLUDE_SYS_INTERNAL_PATH_H__
 
-enum skelly_log_code {
-    NORM,
-    WARN,
-    ERR,
-    CRIT
+#include <stdbool.h>
+
+struct skelly_file_path {
+    const char* path;
+    bool exists;
+    bool safe;
 };
 
-struct skelly_log_conf {
-    const char* content;
-    unsigned int end;
-    enum skelly_log_code* code;
-};
+struct skelly_file_path skelly_input_file_valid(const char*);
 
-extern void _skelly_dlog(const struct skelly_log_conf*);
-
-extern void _skelly_mlog(const struct skelly_log_conf*);
-
-extern void _skelly_elog(int, const char*, int);
-
-#endif /* __INCLUDE_CLI_OUTPUT_H__ */
+#endif /* __INCLUDE_SYS_INTERNAL_PATH_H__ */

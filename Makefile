@@ -20,7 +20,8 @@
 ################################################################################
 
 BINARY=scc
-CFLAGS=-std=c11 -DSKDEBUG -Iinclude
+CFLAGS=-std=c11 -DSKDEBUG -Iinclude -Wno-error
+COMPILE_FOLDERS=./compiler/*.c ./compiler/cli/*.c ./compiler/cli/modes/*.c ./compiler/sys/internal/*.c
 
 all: build
 
@@ -29,7 +30,7 @@ clean:
 
 build: clean
 	mkdir build
-	gcc $(CFLAGS) ./compiler/*.c ./compiler/cli/*.c ./compiler/cli/modes/*.c -o ./build/$(BINARY)
+	gcc $(CFLAGS) $(COMPILE_FOLDERS) -o ./build/$(BINARY)
 
 run:
 	./build/$(BINARY)

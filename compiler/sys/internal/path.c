@@ -19,26 +19,37 @@
 *                                                                               *
 *******************************************************************************/
 
-#ifndef __INCLUDE_CLI_OUTPUT_H__
-#define __INCLUDE_CLI_OUTPUT_H__
+#include "sys/internal/path.h"
 
-enum skelly_log_code {
-    NORM,
-    WARN,
-    ERR,
-    CRIT
-};
+#if defined(__linux__) || defined(__APPLE__)
+#   include <unistd.h>
+#   include <sys/types.h>
+#   include <sys/stat.h>
+#elif defined(WIN32)
+#   include <windows.h>
+// TODO: Requires implementation
+#endif
 
-struct skelly_log_conf {
-    const char* content;
-    unsigned int end;
-    enum skelly_log_code* code;
-};
+bool __skelly_has_nts(const char* str) {
+    bool result = false;
+    while (!result) {
+        if (result)
+            break;
+        result = (*(str++)) == '\0';
+    }
+    return result;
+}
 
-extern void _skelly_dlog(const struct skelly_log_conf*);
+struct skelly_file_path skelly_input_file_valid(const char* path) {
+    struct skelly_file_path result;
+    result.path = path;
+    result.exists = false;
 
-extern void _skelly_mlog(const struct skelly_log_conf*);
+    struct stat pf;
+    stat(path, &pf);
 
-extern void _skelly_elog(int, const char*, int);
+    result.exists = S_ISREG(pf.st_mode);
+    result.safe = __skelly_has_nts(path);
 
-#endif /* __INCLUDE_CLI_OUTPUT_H__ */
+    return result;
+}

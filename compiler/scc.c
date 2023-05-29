@@ -19,14 +19,36 @@
 *                                                                               *
 *******************************************************************************/
 
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+
 #include "cli/output.h"
+#include "sys/internal/path.h"
 
 int main(int argc, char* argv[]) {
-    enum skelly_log_code code = WARN;
+    enum skelly_log_code code = NORM;
     struct skelly_log_conf config = {
-        .content = "Test",
+        .content = NULL,
         .end = 1,
         .code = &code
     };
-    _skelly_dlog(&config);
+    
+    if (argc <= 1) {
+        _skelly_elog(1, "Skelly Compiler: ", 0);
+        _skelly_elog(0, "[ERROR]: ", 0);
+        _skelly_elog(2, "Missing Input Files", 1);
+    }
+
+    struct skelly_file_path fp = skelly_input_file_valid(argv[argc - 1]);
+    if (!fp.exists) {
+        _skelly_elog(1, "Skelly Compiler: ", 0);
+        _skelly_elog(0, "[ERROR]: ", 0);
+        _skelly_elog(2, "Given input file was not found.", 1);
+        exit(1);
+    } else if(fp.exists) {
+        code = NORM;
+        config.content = "found!";
+        _skelly_mlog(&config);
+    }
 }
