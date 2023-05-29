@@ -19,24 +19,29 @@
 *                                                                               *
 *******************************************************************************/
 
-#ifndef __INCLUDE_CLI_OUTPUT_H__
-#define __INCLUDE_CLI_OUTPUT_H__
+#ifndef __INCLUDE_CLI_MODES_COLOUR_H__
+#define __INCLUDE_CLI_MODES_COLOUR_H__
 
-enum skelly_log_code {
-    NORM,
-    WARN,
-    ERR,
-    CRIT
-};
+extern inline const char* skelly_colour_bold(void);
 
-struct skelly_log_conf {
-    const char* content;
-    unsigned int end;
-    enum skelly_log_code* code;
-};
+extern inline const char* skelly_colour_italic(void);
 
-extern void _skelly_dlog(const struct skelly_log_conf*);
+extern inline const char* skelly_colour_faint(void);
 
-extern void _skelly_mlog(const struct skelly_log_conf*);
+extern inline const char* skelly_colour_underline(void);
 
-#endif /* __INCLUDE_CLI_OUTPUT_H__ */
+extern inline const char* skelly_colour_red(void);
+
+extern inline const char* skelly_colour_green(void);
+
+extern inline const char* skelly_colour_yellow(void);
+
+extern inline const char* skelly_colour_blue(void);
+
+extern inline const char* skelly_colour_magenta(void);
+
+extern inline const char* skelly_colour_white(void);
+
+extern inline const char* skelly_colour_normal(void);
+
+#endif /* __INCLUDE_CLI_MODES_COLOUR_H__ */

@@ -19,24 +19,48 @@
 *                                                                               *
 *******************************************************************************/
 
-#ifndef __INCLUDE_CLI_OUTPUT_H__
-#define __INCLUDE_CLI_OUTPUT_H__
+#include "cli/modes/colour.h"
 
-enum skelly_log_code {
-    NORM,
-    WARN,
-    ERR,
-    CRIT
-};
+inline const char* skelly_colour_bold(void) {
+    return "\033[1m";
+}
 
-struct skelly_log_conf {
-    const char* content;
-    unsigned int end;
-    enum skelly_log_code* code;
-};
+inline const char* skelly_colour_italic(void) {
+    return "\033[3m";
+}
 
-extern void _skelly_dlog(const struct skelly_log_conf*);
+inline const char* skelly_colour_faint(void) {
+    return "\033[2m";
+}
 
-extern void _skelly_mlog(const struct skelly_log_conf*);
+inline const char* skelly_colour_underline(void) {
+    return "\033[4m";
+}
 
-#endif /* __INCLUDE_CLI_OUTPUT_H__ */
+inline const char* skelly_colour_red(void) {
+    return "\033[31m";
+}
+
+inline const char* skelly_colour_green(void) {
+    return "\033[32m";
+}
+
+inline const char* skelly_colour_yellow(void) {
+    return "\033[33m";
+}
+
+inline const char* skelly_colour_blue(void) {
+    return "\033[34m";
+}
+
+inline const char* skelly_colour_magenta(void) {
+    return "\033[35m";
+}
+
+inline const char* skelly_colour_white(void) {
+    return "\033[37m";
+}
+
+inline const char* skelly_colour_normal(void) {
+    return "\033[00m";
+}

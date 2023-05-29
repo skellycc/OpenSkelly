@@ -19,24 +19,13 @@
 *                                                                               *
 *******************************************************************************/
 
-#ifndef __INCLUDE_CLI_OUTPUT_H__
-#define __INCLUDE_CLI_OUTPUT_H__
+#ifndef __INCLUDE_PARSER_FPRULE_H__
+#define __INCLUDE_PARSER_FPRULE_H__
 
-enum skelly_log_code {
-    NORM,
-    WARN,
-    ERR,
-    CRIT
-};
+bool skelly_string_contains(const char*);
 
-struct skelly_log_conf {
-    const char* content;
-    unsigned int end;
-    enum skelly_log_code* code;
-};
+const char* skelly_string_split(const char*, const char*);
 
-extern void _skelly_dlog(const struct skelly_log_conf*);
+bool skelly_string_cmp(const char*, const char*);
 
-extern void _skelly_mlog(const struct skelly_log_conf*);
-
-#endif /* __INCLUDE_CLI_OUTPUT_H__ */
+#endif /* __INCLUDE_PARSER_FPRULE_H__ */

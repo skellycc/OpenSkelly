@@ -20,7 +20,7 @@
 ################################################################################
 
 BINARY=scc
-CFLAGS=-std=c11 -DSKDEBUG -Iinclude -Wall
+CFLAGS=-std=c11 -DSKDEBUG -Iinclude
 
 all: build
 
@@ -29,7 +29,7 @@ clean:
 
 build: clean
 	mkdir build
-	gcc $(CFLAGS) compiler/scc.c compiler/test.c -o ./build/$(BINARY)
+	gcc $(CFLAGS) ./compiler/*.c ./compiler/cli/*.c ./compiler/cli/modes/*.c -o ./build/$(BINARY)
 
 run:
 	./build/$(BINARY)

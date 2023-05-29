@@ -19,6 +19,14 @@
 *                                                                               *
 *******************************************************************************/
 
+#include "cli/output.h"
+
 int main(int argc, char* argv[]) {
-    
+    enum skelly_log_code code = WARN;
+    struct skelly_log_conf config = {
+        .content = "Test",
+        .end = 1,
+        .code = &code
+    };
+    _skelly_dlog(&config);
 }
