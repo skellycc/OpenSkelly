@@ -25,6 +25,8 @@
 
 #include "cli/output.h"
 #include "sys/internal/path.h"
+#include "parser/fext.h"
+#include "parser/fprule.h"
 
 int main(int argc, char* argv[]) {
     enum skelly_log_code code = NORM;
@@ -33,22 +35,26 @@ int main(int argc, char* argv[]) {
         .end = 1,
         .code = &code
     };
-    
+
     if (argc <= 1) {
-        _skelly_elog(1, "Skelly Compiler: ", 0);
-        _skelly_elog(0, "[ERROR]: ", 0);
-        _skelly_elog(2, "Missing Input Files", 1);
+        _skelly_elog(0, "Missing Input File(s).", 1);
+        return 1;
     }
 
     struct skelly_file_path fp = skelly_input_file_valid(argv[argc - 1]);
     if (!fp.exists) {
-        _skelly_elog(1, "Skelly Compiler: ", 0);
-        _skelly_elog(0, "[ERROR]: ", 0);
-        _skelly_elog(2, "Given input file was not found.", 1);
-        exit(1);
+        _skelly_elog(0, "Given Input File Not Found.", 1);
+        return 1;
     } else if(fp.exists) {
-        code = NORM;
-        config.content = "found!";
+        code = GOOD;
+        config.content = "Compiling File...";
         _skelly_mlog(&config);
+
+        skelly_valid_fext(fp.path);
     }
+
+    printf("Testing malloc guard");
 }
+
+
+

@@ -22,7 +22,16 @@
 #ifndef __INCLUDE_CLI_OUTPUT_H__
 #define __INCLUDE_CLI_OUTPUT_H__
 
+// Remove Useless Warnings
+#pragma GCC diagnostic ignored "-Wundefined-inline"
+
+#define SKELLY_COMPILER_NAME "Skelly Compiler"
+#define SKELLY_COMPILER_WARNING " [WARNING]: "
+#define SKELLY_COMPILER_LOG " [INFO]: "
+#define SKELLY_COMPILER_ERROR " [ERROR]: "
+
 enum skelly_log_code {
+    GOOD,
     NORM,
     WARN,
     ERR,

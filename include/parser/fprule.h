@@ -24,8 +24,12 @@
 
 bool skelly_string_contains(const char*);
 
-const char* skelly_string_split(const char*, const char*);
+char* skelly_string_split(const char*, const char*);
 
 bool skelly_string_cmp(const char*, const char*);
+
+bool skelly_is_all_str(const char*);
+
+bool skelly_is_all_num(const char*);
 
 #endif /* __INCLUDE_PARSER_FPRULE_H__ */

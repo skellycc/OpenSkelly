@@ -19,24 +19,30 @@
 *                                                                               *
 *******************************************************************************/
 
-#ifndef __INCLUDE_PARSER_FEXT_H__
-#define __INCLUDE_PARSER_FEXT_H__
+#include <string.h>
+#include <stdio.h>
 
-#include <stdbool.h>
+#include "cli/output.h"
+#include "parser/fext.h"
+#include "parser/fprule.h"
 
-#define SKELLY_VALID_FEXT_SRC ".skl"
-#define SKELLY_VALID_FEXT_MOD ".sklm"
+bool skelly_check_fext_len(const char* f_extn) {
+    // 0 OK
+    // 1 NOT OK
+    if (strlen(f_extn) > SKELLY_MAX_FEXT_NAME) {
+        return true;
+    }
+    return false;
+}
 
-#define SKELLY_MAX_FEXT_NAME 15
-#define SKELLY_FEXT_LEN_WARN "File name is quite long, consider shortening it. To disable this error use: -Rfnlen"
+bool skelly_valid_fext(const char* f_extn) {
+    enum skelly_log_code code = NORM;
+    struct skelly_log_conf str_log = {0};
+    
+    bool safe_len = skelly_check_fext_len(f_extn);
+    if (safe_len) {
+        _skelly_elog(1, SKELLY_FEXT_LEN_WARN, 1);
+    }
 
-struct skelly_fext_result {
-    bool valid_fext;
-    char* ends_with;
-};
-
-bool skelly_check_fext_len(const char*);
-
-bool skelly_valid_fext(const char*);
-
-#endif /* __INCLUDE_PARSER_FEXT_H__ */
+    return false;
+}

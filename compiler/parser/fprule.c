@@ -19,24 +19,42 @@
 *                                                                               *
 *******************************************************************************/
 
-#ifndef __INCLUDE_PARSER_FEXT_H__
-#define __INCLUDE_PARSER_FEXT_H__
-
+#include <string.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <ctype.h>
 
-#define SKELLY_VALID_FEXT_SRC ".skl"
-#define SKELLY_VALID_FEXT_MOD ".sklm"
+#include "parser/fprule.h"
 
-#define SKELLY_MAX_FEXT_NAME 15
-#define SKELLY_FEXT_LEN_WARN "File name is quite long, consider shortening it. To disable this error use: -Rfnlen"
+bool __skelly_is_type(const char* _src, int (*_input)(int)) {
+    bool acceptable = true;
+    int i = 0;
+    while (*++_src != '\0') {
+        if (_input(_src[i])) {
+            acceptable = false;
+            break;
+        }
+        i++;
+    }
+    return acceptable;
+}
 
-struct skelly_fext_result {
-    bool valid_fext;
-    char* ends_with;
-};
+bool skelly_string_contains(const char* _src) {
+    return false;
+}
 
-bool skelly_check_fext_len(const char*);
+char* skelly_string_split(const char* _src, const char* _delim) {
+    return "";
+}
 
-bool skelly_valid_fext(const char*);
+bool skelly_string_cmp(const char* _src1, const char* _src2) {
+    return strcmp(_src1, _src2);
+}
 
-#endif /* __INCLUDE_PARSER_FEXT_H__ */
+bool skelly_is_all_str(const char* _src) {
+    return __skelly_is_type(_src, isdigit);
+}
+
+bool skelly_is_all_num(const char* _src) {
+    return __skelly_is_type(_src, isalpha);
+}

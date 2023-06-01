@@ -32,38 +32,41 @@
     else \
         printf("%s", __msg);
 
-void _skelly_dlog(const struct skelly_log_conf* _conf) {
-    switch (*_conf->code) {
-        case NORM:
-            SKELLY_OUT(skelly_colour_normal(), _conf->content, _conf->end, 1);
-            break;
-        case WARN:
-            SKELLY_OUT(skelly_colour_magenta(), _conf->content, _conf->end, 1);
-            break;
-        case ERR:
-            SKELLY_OUT(skelly_colour_red(), _conf->content, _conf->end, 1);
-            break;
-        case CRIT:
-            SKELLY_OUT(skelly_colour_underline(), "", 1, 0);
-            SKELLY_OUT(skelly_colour_red(), _conf->content, _conf->end, 1);
-            break;
-    }
-}
+// TODO: Scheduled for deprecation
+void _skelly_dlog(const struct skelly_log_conf* _conf) { }
 
 void _skelly_mlog(const struct skelly_log_conf* _conf) {
     switch (*_conf->code) {
+        case GOOD:
+            SKELLY_OUT(skelly_colour_magenta(), SKELLY_COMPILER_NAME, 0, 0);
+            SKELLY_OUT(skelly_colour_green(), SKELLY_COMPILER_LOG, 0, 0);
+            SKELLY_OUT(skelly_colour_bold(), _conf->content, _conf->end, 0);
+            SKELLY_OUT(skelly_colour_normal(), "", 0, 0);
+            break;
         case NORM:
-            SKELLY_OUT(skelly_colour_normal(), _conf->content, _conf->end, 0);
+            SKELLY_OUT(skelly_colour_magenta(), SKELLY_COMPILER_NAME, 0, 0);
+            SKELLY_OUT(skelly_colour_normal(), SKELLY_COMPILER_LOG, 0, 0);
+            SKELLY_OUT(skelly_colour_bold(), _conf->content, _conf->end, 0);
+            SKELLY_OUT(skelly_colour_normal(), "", 0, 0);
             break;
         case WARN:
-            SKELLY_OUT(skelly_colour_magenta(), _conf->content, _conf->end, 0);
+            SKELLY_OUT(skelly_colour_magenta(), SKELLY_COMPILER_NAME, 0, 0);
+            SKELLY_OUT(skelly_colour_magenta(), SKELLY_COMPILER_WARNING, 0, 0);
+            SKELLY_OUT(skelly_colour_bold(), _conf->content, _conf->end, 0);
+            SKELLY_OUT(skelly_colour_normal(), "", 0, 0);
             break;
         case ERR:
-            SKELLY_OUT(skelly_colour_red(), _conf->content, _conf->end, 0);
+            SKELLY_OUT(skelly_colour_magenta(), SKELLY_COMPILER_NAME, 0, 0);
+            SKELLY_OUT(skelly_colour_red(), SKELLY_COMPILER_ERROR, 0, 0);
+            SKELLY_OUT(skelly_colour_bold(), _conf->content, _conf->end, 0);
+            SKELLY_OUT(skelly_colour_normal(), "", 0, 0);
             break;
         case CRIT:
             SKELLY_OUT(skelly_colour_underline(), "", 1, 0);
-            SKELLY_OUT(skelly_colour_red(), _conf->content, _conf->end, 0);
+            SKELLY_OUT(skelly_colour_magenta(), SKELLY_COMPILER_NAME, 0, 0);
+            SKELLY_OUT(skelly_colour_red(), SKELLY_COMPILER_ERROR, 0, 0);
+            SKELLY_OUT(skelly_colour_bold(), _conf->content, _conf->end, 0);
+            SKELLY_OUT(skelly_colour_normal(), "", 0, 0);
             break;
     }
 }
@@ -71,16 +74,28 @@ void _skelly_mlog(const struct skelly_log_conf* _conf) {
 void _skelly_elog(int colour, const char* cause, int delim) {
     switch (colour) {
         case 0:
-            SKELLY_OUT(skelly_colour_red(), cause, delim, 0);
+            SKELLY_OUT(skelly_colour_magenta(), SKELLY_COMPILER_NAME, 0, 0);
+            SKELLY_OUT(skelly_colour_red(), SKELLY_COMPILER_ERROR, 0, 0);
+            SKELLY_OUT(skelly_colour_bold(), cause, delim, 0);
+            SKELLY_OUT(skelly_colour_normal(), "", 0, 0);
             break;
         case 1:
-            SKELLY_OUT(skelly_colour_magenta(), cause, delim, 0);
+            SKELLY_OUT(skelly_colour_magenta(), SKELLY_COMPILER_NAME, 0, 0);
+            SKELLY_OUT(skelly_colour_magenta(), SKELLY_COMPILER_WARNING, 0, 0);
+            SKELLY_OUT(skelly_colour_bold(), cause, delim, 0);
+            SKELLY_OUT(skelly_colour_normal(), "", 0, 0);
             break;
         case 2:
-            SKELLY_OUT(skelly_colour_normal(), cause, delim, 0);
+            SKELLY_OUT(skelly_colour_magenta(), SKELLY_COMPILER_NAME, 0, 0);
+            SKELLY_OUT(skelly_colour_normal(), SKELLY_COMPILER_LOG, 0, 0);
+            SKELLY_OUT(skelly_colour_bold(), cause, delim, 0);
+            SKELLY_OUT(skelly_colour_normal(), "", 0, 0);
             break;
         default:
-            SKELLY_OUT(skelly_colour_normal(), cause, delim, 0);
+            SKELLY_OUT(skelly_colour_magenta(), SKELLY_COMPILER_NAME, 0, 0);
+            SKELLY_OUT(skelly_colour_normal(), SKELLY_COMPILER_LOG, 0, 0);
+            SKELLY_OUT(skelly_colour_bold(), cause, delim, 0);
+            SKELLY_OUT(skelly_colour_normal(), "", 0, 0);
             break;
     }
 }

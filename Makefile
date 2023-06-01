@@ -21,7 +21,7 @@
 
 BINARY=scc
 CFLAGS=-std=c11 -DSKDEBUG -Iinclude -Wno-error
-COMPILE_FOLDERS=./compiler/*.c ./compiler/cli/*.c ./compiler/cli/modes/*.c ./compiler/sys/internal/*.c
+COMPILE_FOLDERS=./compiler/*.c ./compiler/cli/*.c ./compiler/cli/modes/*.c ./compiler/sys/internal/*.c ./compiler/parser/*.c
 
 all: build
 
