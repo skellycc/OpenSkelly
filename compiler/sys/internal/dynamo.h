@@ -19,22 +19,22 @@
 *                                                                               *
 *******************************************************************************/
 
-#ifndef VECTOR_H
-#define VECTOR_H
+#ifndef DYNAMO_H
+#define DYNAMO_H
 
 #include <stdio.h>
 #include <stdlib.h>
 
-struct vector {
+struct dynamo {
     size_t elemsize;
     int length;
     int* buffer;
 };
 
-struct vector create_vector(size_t elemsize) {
+struct dynamo create_dynamo(size_t elemsize) {
     int* buffer = malloc(elemsize);
 
-    struct vector result = {
+    struct dynamo result = {
         .elemsize = elemsize,
         .buffer = buffer,
         .length = 0,
@@ -42,13 +42,13 @@ struct vector create_vector(size_t elemsize) {
     return result;
 }
 
-void vector_set(struct vector *v, int new) {
-    v->length++;
-    v->buffer = realloc(v->buffer, v->length * v->elemsize);
-    v->buffer[v->length-1] = new;
+void dynamo_set(struct dynamo *d, int new) {
+    d->length++;
+    d->buffer = realloc(d->buffer, d->length * d->elemsize);
+    d->buffer[d->length-1] = new;
 }
-int vector_get(struct vector *v, int index) {
-    return v->buffer[index];
+int dynamo_get(struct dynamo *d, int index) {
+    return d->buffer[index];
 }
 //! FREE BUFFER AT THE END OF SCOPE
 
