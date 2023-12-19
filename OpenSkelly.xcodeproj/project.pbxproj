@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		614682352B30799800A7EDF9 /* lex.c in Sources */ = {isa = PBXBuildFile; fileRef = 614682342B30799800A7EDF9 /* lex.c */; };
 		614FB0A72B2FB8C600C581E2 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 614FB0A62B2FB8C600C581E2 /* main.c */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		6124C3C12B2FC4E800D55E62 /* lex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = lex.h; sourceTree = "<group>"; };
+		6124C3C22B2FC64F00D55E62 /* token.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = token.h; sourceTree = "<group>"; };
+		6124C3C32B2FC8E900D55E62 /* decls.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = decls.h; sourceTree = "<group>"; };
+		614682342B30799800A7EDF9 /* lex.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = lex.c; sourceTree = "<group>"; wrapsLines = 0; };
+		614682362B309B2800A7EDF9 /* keywords.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = keywords.h; sourceTree = "<group>"; };
 		614FB0A32B2FB8C600C581E2 /* OpenSkelly */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = OpenSkelly; sourceTree = BUILT_PRODUCTS_DIR; };
 		614FB0A62B2FB8C600C581E2 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,6 +44,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6124C3C02B2FC4DE00D55E62 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				6124C3C12B2FC4E800D55E62 /* lex.h */,
+				6124C3C22B2FC64F00D55E62 /* token.h */,
+				6124C3C32B2FC8E900D55E62 /* decls.h */,
+				614682362B309B2800A7EDF9 /* keywords.h */,
+			);
+			path = include;
+			sourceTree = "<group>";
+		};
 		614FB09A2B2FB8C600C581E2 = {
 			isa = PBXGroup;
 			children = (
@@ -57,7 +74,9 @@
 		614FB0A52B2FB8C600C581E2 /* OpenSkelly */ = {
 			isa = PBXGroup;
 			children = (
+				6124C3C02B2FC4DE00D55E62 /* include */,
 				614FB0A62B2FB8C600C581E2 /* main.c */,
+				614682342B30799800A7EDF9 /* lex.c */,
 			);
 			path = OpenSkelly;
 			sourceTree = "<group>";
@@ -120,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				614FB0A72B2FB8C600C581E2 /* main.c in Sources */,
+				614682352B30799800A7EDF9 /* lex.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +265,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -253,6 +274,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
