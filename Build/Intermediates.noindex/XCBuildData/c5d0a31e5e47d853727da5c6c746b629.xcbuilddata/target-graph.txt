@@ -1,2 +1,0 @@
-Target dependency graph (1 target)
-Target 'OpenSkelly' in project 'OpenSkelly' (no dependencies)
