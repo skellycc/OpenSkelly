@@ -111,12 +111,9 @@ int sk_parse(const char* source) {
     do {
         if (__SKELLY_PREPROCESS__) {
             if (sk_tok(*source) == TOK_SYMBOL_IMPORT) {
-                // TODO: Importing
-                // NOTE: Partially Done
                 sk_import_t import_result = sk_validate_import(source);
                 if (import_result.found && import_result.fext_valid) {
-                    printf("%s\n", "Valid import found");
-                    printf("IMPORT FILE: %s\n", import_result.fname);
+
                 }
             }
         }
