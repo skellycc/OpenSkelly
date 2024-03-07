@@ -32,7 +32,7 @@ int main(void) {
     
     const char* source_code = 
         "#import <stdlib.ssk>"
-        "''hello test"
+        "#hello test"
     ;
 
     if (sk_parse(source_code) == SK_PARSE_ERR) {

@@ -22,14 +22,14 @@ typedef enum {
 
 typedef struct {
     union {
-        void* element;
+        void* element[2]; // s: 2
         dy_t type;
     };
 } dy_arr_t;
 
 SK_EXPORT void* sk_init_dyarr(size_t);
 
-SK_EXPORT void sk_add_dyarr(void*, void*, const dy_t*);
+SK_EXPORT void sk_add_dyarr(void*, const dy_arr_t*);
 
 SK_EXPORT void* sk_get_dyarr(void*, unsigned int);
 
