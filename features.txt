@@ -1,0 +1,163 @@
+==================================================================
+=================== Skelly Compiler Collection ===================
+
+Features
+
+
+- Static Typed
+- Compiled
+- Semi-Managed (option to use Garbage Collector or Handle Memory)
+- Option to use OOP
+- stdlib/stdio API
+- GUI Purpose Language (build GUI apps with this language)
+- Cross Platform
+- Imports work the same as include statements
+- Macros?
+
+Language Features
+
+Able to import
+Able to export
+
+Able to use Macros
+Able to use Preprocessors
+
+Able to use Managed Memory
+Able to use Unsafe Memory
+
+Able to use Classes/Objects
+Able to use static types on each type
+
+Able to use C/C++ std libraries
+Able to Call C/C++ code
+
+Able to catch/throw errors
+Able to import like include statements
+
+Able to manipulate the Virtual Machine
+
+Keywords:
+==================================================================
+=================== Skelly Language Keywords =====================
+
+Macros/Preprocessors
+
+#defined (...)
+#define (...) or #define ...
+#delete ...
+#if ...
+#ifn ...
+#elseif ...
+#else ...
+#endif
+
+Imports/Exports
+
+open "FileName.sc"
+glob Function or glob Variable (same as extern)
+
+static Imports
+
+// Foo.sc
+class Foo { static [func] void xyz() { }  }
+
+open static "Foo.sc"
+
+// Able to use
+xyz() without Foo.xyz()
+
+Variables and Constants
+
+const string myName = "";
+int or uint
+int myName1 = 1;
+uint myName2 = 2;
+
+Functions
+
+[func] int myFunction();
+[func] int myFunction() { return 0; }
+
+Static Functions
+
+static [func] void myFunction();
+glob static [func] void myFunction(); // Not allowed
+glob [func] void myFunction(); // Allowed
+
+// Classes and Objects
+
+glob class MyClass {
+
+    create [func] MyClass() { }
+
+    // Some classes may not need this, if they are singletons
+    // In that case you can add the = delete after it
+    delete [func] MyClass() { }
+
+    // Deleted constructors/destructors
+    create [func] MyClass() = delete;
+    delete [func] MyClass() = delete;
+
+    [func] void helloClass() { }
+
+    static [func] void byeClass() { } // Not allowed to call instance methods
+}
+
+MyClass myClass = new MyClass();
+myClass.helloClass();
+MyClass::byeClass();
+
+// Inheritance and Interface Implementations
+
+glob interface AnimalSounds {
+    [func] void makeSound();
+}
+
+glob class Animal from AnimalSounds  {
+
+    [[InterfaceImpl]]
+    [func] void makeSound() {
+        ...
+    }
+}
+
+glob class Cat superclass Animal {
+
+    [[overriding]]
+    [func] void makeSound() {
+        Animal::makeSound() // call parent method
+        ...
+    }
+}
+
+// Exceptions (class only)
+
+glob class MyError superclass Error {
+
+    create MyError(string message) {
+        Error(message);
+    }
+
+    // Don't need our destructor since Error has it deleted
+}
+
+try {
+    ...
+    Something something = new Something();
+    something.DoSomething();
+    ...
+} catch (MyError) {
+    ...
+} finally {
+    ...
+}
+
+==================================================================
+==================================================================
+
+Ideas
+
+- Call C++?
+- Potential to transpile? (into C...?)
+
+

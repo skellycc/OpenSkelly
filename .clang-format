@@ -1,0 +1,32 @@
+BasedOnStyle: GNU
+IndentWidth: 2
+BraceWrapping:
+  AfterClass: true
+  AfterControlStatement: true
+  AfterEnum: true
+  AfterFunction: true
+  AfterNamespace: true
+  AfterStruct: true
+  AfterUnion: true
+  AfterExternBlock: true
+  BeforeCatch: true
+  BeforeElse: true
+  IndentBraces: false
+PointerAlignment: Left
+SpaceBeforeParens: Always
+SpacesInParentheses: true
+SpacesInAngles: false
+SpacesInCStyleCastParentheses: true
+SpacesInSquareBrackets: true
+SpacesInContainerLiterals: true
+SpaceBeforeCpp11BracedList: true
+SpaceBeforeCtorInitializerColon: true
+SpaceBeforeInheritanceColon: true
+SpaceBeforeRangeBasedForLoopColon: true
+BreakBeforeBraces: GNU
+AllowShortFunctionsOnASingleLine: None
+ColumnLimit: 0
+SpaceInEmptyParentheses: false
+ConstructorInitializerAllOnOneLineOrOnePerLine: false
+BinPackArguments: false
+ForEachMacros: [ foreach, Q_FOREACH, BOOST_FOREACH ]
